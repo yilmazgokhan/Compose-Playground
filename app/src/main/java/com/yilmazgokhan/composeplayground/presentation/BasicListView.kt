@@ -1,16 +1,18 @@
 package com.yilmazgokhan.composeplayground.presentation
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.absoluteOffset
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun BasicListView() {
@@ -47,14 +49,30 @@ fun BasicListView() {
 
 @Composable
 fun RenderItem(item: ListItem) {
-    Column(
-        modifier = Modifier.padding(2.dp),
-        verticalArrangement = Arrangement.Center
+    Card(
+        modifier = Modifier.padding(10.dp),
+        elevation = 4.dp
     ) {
-        Text(text = item.name)
-        Text(text = item.username)
-        Text(text = item.summary)
+        Column(modifier = Modifier.padding(all = 10.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = item.name,
+                    fontWeight = FontWeight.W700
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = " - (${item.username})",
+                    color = Color.Gray,
+                    fontSize = 14.sp
+                )
+            }
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = item.summary
+            )
+        }
     }
+
 }
 
 
