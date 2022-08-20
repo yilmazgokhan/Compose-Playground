@@ -12,6 +12,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yilmazgokhan.composeplayground.presentation.home.HomeScreen
 import com.yilmazgokhan.composeplayground.presentation.list.BasicListView
+import com.yilmazgokhan.composeplayground.presentation.login.LoginScreen
+import com.yilmazgokhan.composeplayground.utils.NavDirections
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,15 +31,18 @@ class MainActivity : ComponentActivity() {
 fun NavigationComponent(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = "homeScreen"
+        startDestination = NavDirections.LOGIN_SCREEN
     ) {
-        composable("homeScreen") {
+        composable(NavDirections.LOGIN_SCREEN) {
+            LoginScreen(navController)
+        }
+        composable(NavDirections.HOME_SCREEN) {
             HomeScreen(navController)
         }
-        composable("basicList") {
+        composable(NavDirections.BASIC_LIST_SCREEN) {
             BasicListView()
         }
-        composable("details") {
+        composable(NavDirections.DETAILS_SCREEN) {
             DetailScreen()
         }
     }

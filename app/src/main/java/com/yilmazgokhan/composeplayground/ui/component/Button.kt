@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.yilmazgokhan.composeplayground.R
+import com.yilmazgokhan.composeplayground.ui.theme.Purple200
 
 @Composable
 fun ButtonDefault(
@@ -35,8 +37,8 @@ fun ButtonDefault(
 @Composable
 fun ButtonWithBorder(
     text: String,
-    textColor: Color,
-    borderColor: Color,
+    textColor: Color = Purple200,
+    borderColor: Color = Purple200,
     click: () -> Unit = {}
 ) {
     Button(
