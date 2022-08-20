@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 
@@ -15,6 +16,7 @@ fun TextDefault(
     color: Color = Color.Black,
     fontSize: TextUnit = 16.sp,
     fontWeight: FontWeight = FontWeight.W700,
+    textAlign: TextAlign = TextAlign.Start,
     maxLines: Int = Int.MAX_VALUE
 ) {
     Text(
@@ -23,7 +25,8 @@ fun TextDefault(
         color = color,
         fontSize = fontSize,
         fontWeight = fontWeight,
-        maxLines = maxLines
+        maxLines = maxLines,
+        textAlign = textAlign
     )
 }
 
@@ -34,6 +37,7 @@ fun TextSecondary(
     color: Color = Color.Gray,
     fontSize: TextUnit = 14.sp,
     fontWeight: FontWeight = FontWeight.W500,
+    textAlign: TextAlign = TextAlign.Start,
     maxLines: Int = Int.MAX_VALUE
 ) {
     Text(
@@ -42,7 +46,8 @@ fun TextSecondary(
         color = color,
         fontSize = fontSize,
         fontWeight = fontWeight,
-        maxLines = maxLines
+        maxLines = maxLines,
+        textAlign = textAlign
     )
 }
 
@@ -53,6 +58,7 @@ fun TextTiny(
     color: Color = Color.LightGray,
     fontSize: TextUnit = 14.sp,
     fontWeight: FontWeight = FontWeight.W500,
+    textAlign: TextAlign = TextAlign.Start,
     maxLines: Int = Int.MAX_VALUE
 ) {
     Text(
@@ -61,6 +67,7 @@ fun TextTiny(
         color = color,
         fontSize = fontSize,
         fontWeight = fontWeight,
-        maxLines = maxLines
+        maxLines = maxLines,
+        textAlign = textAlign
     )
 }

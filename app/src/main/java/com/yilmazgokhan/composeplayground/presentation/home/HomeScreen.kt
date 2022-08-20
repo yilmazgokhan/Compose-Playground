@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.yilmazgokhan.composeplayground.ui.component.ButtonDefault
+import com.yilmazgokhan.composeplayground.utils.NavDirections
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -18,11 +19,11 @@ fun HomeScreen(navController: NavController) {
     ) {
         ButtonDefault(
             text = "List",
-            click = { navController.navigate("basicList") }
+            click = { navController.navigate(NavDirections.BASIC_LIST_SCREEN) }
         )
         ButtonDefault(
             text = "Details",
-            click = { navController.navigate("details") }
+            click = { navController.navigate(NavDirections.DETAILS_SCREEN) }
         )
     }
 }

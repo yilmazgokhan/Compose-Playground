@@ -46,7 +46,6 @@ fun ButtonWithBorder(
         border = BorderStroke(1.dp, borderColor),
         colors = ButtonDefaults.outlinedButtonColors(contentColor = borderColor),
         modifier = Modifier
-            .padding(4.dp)
             .fillMaxWidth()
     ) {
         TextSecondary(
