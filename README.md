@@ -27,10 +27,11 @@
 - [Kotlin](https://kotlinlang.org/)
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
 - [Navigation Compose](https://developer.android.com/jetpack/compose/navigation)
+- [Coil](https://coil-kt.github.io/coil/compose/)
 
 
 ### Contributing to Project
 
-- All contributions are welcome! Please fork this repository and contribute back using pull requests.
+All contributions are welcome! Please fork this repository and contribute back using pull requests.
 
 > Don't forget to star ⭐ the repo it motivates me to share more open source

@@ -4,7 +4,7 @@ import com.yilmazgokhan.composeplayground.data.local.BasicListItem
 
 val Users = listOf(
     BasicListItem(
-        "Gokhan",
+        "Jeff Merwin",
         "logicerror",
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "https://img.freepik.com/free-photo/handsome-confident-smiling-man-with-hands-crossed-chest_176420-18743.jpg?w=2000",
