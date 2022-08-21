@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.yilmazgokhan.composeplayground.ui.theme.Purple700
 
 @Composable
 fun TextFieldDefault(
@@ -19,21 +20,21 @@ fun TextFieldDefault(
     text: String,
     modifier: Modifier = Modifier,
 ) {
-    Surface(
-        shape = MaterialTheme.shapes.small,
-        color = Color.White,
-        border = BorderStroke(
-            width = 1.dp,
-            color = Color.Red
-        )
+    Column(
+        modifier = Modifier.padding(horizontal = 2.dp),
+        verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
-        Column(
-            modifier = Modifier.padding(horizontal = 2.dp),
-            verticalArrangement = Arrangement.spacedBy(2.dp)
+        info?.let {
+            TextSecondary(text = it)
+        }
+        Surface(
+            shape = MaterialTheme.shapes.small,
+            color = Color.White,
+            border = BorderStroke(
+                width = 1.dp,
+                color = Purple700
+            )
         ) {
-            info?.let {
-                TextSecondary(text = it)
-            }
             TextField(modifier = Modifier.fillMaxWidth(),
                 value = text,
                 onValueChange = {/* TODO */ }
