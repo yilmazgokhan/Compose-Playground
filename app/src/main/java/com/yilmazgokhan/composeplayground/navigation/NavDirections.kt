@@ -1,4 +1,4 @@
-package com.yilmazgokhan.composeplayground.utils
+package com.yilmazgokhan.composeplayground.navigation
 
 object NavDirections {
     const val LOGIN_SCREEN = "login"

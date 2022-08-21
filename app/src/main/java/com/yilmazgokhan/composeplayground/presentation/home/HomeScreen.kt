@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.yilmazgokhan.composeplayground.ui.component.ButtonDefault
-import com.yilmazgokhan.composeplayground.utils.NavDirections
+import com.yilmazgokhan.composeplayground.navigation.NavDirections
 
 @Composable
 fun HomeScreen(navController: NavController) {

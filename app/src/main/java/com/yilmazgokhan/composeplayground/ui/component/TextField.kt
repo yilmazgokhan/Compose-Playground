@@ -5,12 +5,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.yilmazgokhan.composeplayground.ui.theme.Purple700
 
@@ -41,4 +40,32 @@ fun TextFieldDefault(
             )
         }
     }
+}
+
+// TODO: Add state
+@Composable
+fun TextFieldDefault(
+    text: String,
+    label: String,
+    placeholder: String,
+    onValueChange: (String) -> Unit,
+    leadingIcon: ImageVector?,
+    contentDescription: String,
+) {
+    OutlinedTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = text,
+        singleLine = true,
+        leadingIcon = {
+            if (leadingIcon != null) {
+                Icon(
+                    imageVector = leadingIcon,
+                    contentDescription = contentDescription
+                )
+            }
+        },
+        onValueChange = onValueChange,
+        label = { Text(text = label) },
+        placeholder = { Text(text = placeholder) },
+    )
 }

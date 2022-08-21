@@ -12,27 +12,29 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.yilmazgokhan.composeplayground.R
+import com.yilmazgokhan.composeplayground.navigation.NavDirections
 import com.yilmazgokhan.composeplayground.ui.component.ButtonWithBorder
 import com.yilmazgokhan.composeplayground.ui.component.TextSecondary
 import com.yilmazgokhan.composeplayground.ui.theme.Purple200
-import com.yilmazgokhan.composeplayground.utils.NavDirections
 
 @Composable
 fun LoginScreen(navController: NavController) {
-    Scaffold(bottomBar = { LoginBottomBar() },
+    Scaffold(bottomBar = { LoginBottomBar(navController) },
         content = {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .fillMaxHeight()
                     .padding(4.dp),
-                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 var email by remember { mutableStateOf(TextFieldValue("")) }
@@ -40,9 +42,11 @@ fun LoginScreen(navController: NavController) {
                 var passVisible by rememberSaveable { mutableStateOf(false) }
 
                 Image(
+                    modifier = Modifier.padding(top = 16.dp),
                     painter = painterResource(id = R.drawable.compose),
-                    contentDescription = "appIcon"
+                    contentDescription = "appIcon",
                 )
+                Spacer(modifier = Modifier.height(8.dp))
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
@@ -97,37 +101,64 @@ fun LoginScreen(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.height(4.dp))
 
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    val checkedState = remember { mutableStateOf(true) }
+
+                    TextSecondary(
+                        text = "Forget password!",
+                        style = TextStyle(textDecoration = TextDecoration.Underline)
+                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Checkbox(
+                            checked = checkedState.value,
+                            onCheckedChange = { checkedState.value = it }
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        TextSecondary(text = "Remember Me")
+                    }
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+
                 ButtonWithBorder(
                     text = "Login",
                     click = {
-                        if (pass.text == "" && email.text == "")
-                            navController.navigate(NavDirections.HOME_SCREEN)
+                        // TODO:
+                        //if (pass.text == "" && email.text == "")
+                        navController.navigate(NavDirections.HOME_SCREEN)
                     }
                 )
-                Spacer(modifier = Modifier.height(4.dp))
 
-                ButtonWithBorder(
-                    text = "Register",
-                    textColor = Color.White,
-                    borderColor = Purple200,
-                    backgroundColor = Purple200,
-                    click = { navController.navigate(NavDirections.REGISTER_SCREEN) }
-                )
-                Spacer(modifier = Modifier.height(4.dp))
             }
-
         }
     )
 }
 
 @Composable
-fun LoginBottomBar() {
-    TextSecondary(
-        modifier = Modifier
-            .padding(4.dp)
-            .fillMaxWidth(),
-        text = "Privacy Policy and Terms of Service",
-        textAlign = TextAlign.Center
+fun LoginBottomBar(navController: NavController) {
+    Column(modifier = Modifier.padding(4.dp)) {
+        ButtonWithBorder(
+            text = "Register",
+            textColor = Color.White,
+            borderColor = Purple200,
+            backgroundColor = Purple200,
+            click = { navController.navigate(NavDirections.REGISTER_SCREEN) }
+        )
+        Spacer(modifier = Modifier.height(12.dp))
 
-    )
+        TextSecondary(
+            modifier = Modifier
+                .padding(4.dp)
+                .fillMaxWidth(),
+            text = "Privacy Policy and Terms of Service",
+            textAlign = TextAlign.Center
+        )
+    }
 }
