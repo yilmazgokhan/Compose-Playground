@@ -28,7 +28,7 @@ import com.yilmazgokhan.composeplayground.ui.theme.Purple200
 
 @Composable
 fun LoginScreen(navController: NavController) {
-    Scaffold(bottomBar = { LoginBottomBar(navController) },
+    Scaffold(bottomBar = { BottomBar(navController) },
         content = {
             Column(
                 modifier = Modifier
@@ -142,7 +142,7 @@ fun LoginScreen(navController: NavController) {
 }
 
 @Composable
-fun LoginBottomBar(navController: NavController) {
+fun BottomBar(navController: NavController) {
     Column(modifier = Modifier.padding(4.dp)) {
         ButtonWithBorder(
             text = "Register",

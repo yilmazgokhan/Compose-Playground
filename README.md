@@ -11,16 +11,21 @@
 ## Features
 
 - Navigation with Compose
-- Displaying a simple list with mock data
 - Using the Component structure
+- Displaying a simple list with mock data
+- Simple login screen
+- Simple register screen
 
 ## Project Structure
 
 - data: It contains all the data accessing and manipulating components.
+- navigation: Navigation component classes
 - presentation: View classes.
 - ui: Component classes.
+- utils: Utility classes.
 
 <img src="/screenshots/list_screen.png" width="250">
+<img src="/screenshots/login_screen.png" width="250">
 
 ## Libraries
 
