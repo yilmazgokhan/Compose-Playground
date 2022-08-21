@@ -24,8 +24,12 @@
 - ui: Component classes.
 - utils: Utility classes.
 
-<img src="/screenshots/list_screen.png" width="250">
-<img src="/screenshots/login_screen.png" width="250">
+## General
+|Example|Preview|
+|-------|-------|
+|[Register Screen]()|<img src ="/screenshots/register_screen.png" width=250> |
+|[Login Screen]()|<img src ="/screenshots/login_screen.png" width=250> |
+|[List Screen]()|<img src ="/screenshots/list_screen.png" width=250> |
 
 ## Libraries
 

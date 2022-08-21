@@ -126,7 +126,7 @@ fun RegisterScreen(navController: NavController) {
                 GenderSelection()
                 Spacer(modifier = Modifier.height(12.dp))
 
-                ConditionsSelection()
+                TermsAndConditionsSelection()
             }
         }
     }
@@ -211,8 +211,8 @@ fun PasswordSelection() {
 
 @Composable
 fun GenderSelection() {
-    val radioOptions = listOf("Male", "Female", "Prefer not to say")
-    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[2]) }
+    val radioOptions = listOf("Male", "Female")
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[1]) }
     Row(
         modifier = Modifier
             .fillMaxWidth(),
@@ -242,7 +242,7 @@ fun GenderSelection() {
 }
 
 @Composable
-fun ConditionsSelection() {
+fun TermsAndConditionsSelection() {
     val termsState = remember { mutableStateOf(false) }
     val newsletterState = remember { mutableStateOf(false) }
 
