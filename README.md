@@ -11,16 +11,25 @@
 ## Features
 
 - Navigation with Compose
-- Displaying a simple list with mock data
 - Using the Component structure
+- Displaying a simple list with mock data
+- Simple login screen
+- Simple register screen
 
 ## Project Structure
 
 - data: It contains all the data accessing and manipulating components.
+- navigation: Navigation component classes
 - presentation: View classes.
 - ui: Component classes.
+- utils: Utility classes.
 
-<img src="/screenshots/list_screen.png" width="250">
+## General
+|Example|Preview|
+|-------|-------|
+**Register Screen** Used components: Surface, OutlinedTextField, Spacer, Icon, Radio Button, Checkbox, Button, Text. <br/>Note: No API call or database connection available. Only UI design and navigation operations are available.|<img src ="/screenshots/register_screen.png" width=250> |
+**Login Screen** Used components: Scaffold, OutlinedTextField, Spacer, Icon, Checkbox, Button, Text. <br/>Note: No API call or database connection available. Only UI design and navigation operations are available.|<img src ="/screenshots/login_screen.png" width=250> |
+**List Screen** Used components: Card, AsyncImage, Text, Spacer. <br/>Note: No API call or database connection available. Only UI design and navigation operations are available.|<img src ="/screenshots/list_screen.png" width=250> |
 
 ## Libraries
 
