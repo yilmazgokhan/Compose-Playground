@@ -27,9 +27,9 @@
 ## General
 |Example|Preview|
 |-------|-------|
-|[Register Screen]() Used components: Surface, OutlinedTextField, Spacer, Icon, Radio Button, Checkbox, Button, Text. <br/>Note: No API call or database connection available. Only UI design and navigation operations are available.|<img src ="/screenshots/register_screen.png" width=250> |
-|[Login Screen]() Used components: Scaffold, OutlinedTextField, Spacer, Icon, Checkbox, Button, Text. <br/>Note: No API call or database connection available. Only UI design and navigation operations are available.|<img src ="/screenshots/login_screen.png" width=250> |
-|[List Screen]() Used components: Card, AsyncImage, Text, Spacer. <br/>Note: No API call or database connection available. Only UI design and navigation operations are available.|<img src ="/screenshots/list_screen.png" width=250> |
+**Register Screen** Used components: Surface, OutlinedTextField, Spacer, Icon, Radio Button, Checkbox, Button, Text. <br/>Note: No API call or database connection available. Only UI design and navigation operations are available.|<img src ="/screenshots/register_screen.png" width=250> |
+**Login Screen** Used components: Scaffold, OutlinedTextField, Spacer, Icon, Checkbox, Button, Text. <br/>Note: No API call or database connection available. Only UI design and navigation operations are available.|<img src ="/screenshots/login_screen.png" width=250> |
+**List Screen** Used components: Card, AsyncImage, Text, Spacer. <br/>Note: No API call or database connection available. Only UI design and navigation operations are available.|<img src ="/screenshots/list_screen.png" width=250> |
 
 ## Libraries
 
