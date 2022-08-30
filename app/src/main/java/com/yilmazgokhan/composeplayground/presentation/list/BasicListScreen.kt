@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.yilmazgokhan.composeplayground.data.local.BasicListItem
+import com.yilmazgokhan.composeplayground.data.local.list.User
 import com.yilmazgokhan.composeplayground.data.mock.basic_list.Users
 import com.yilmazgokhan.composeplayground.ui.component.InfoBox
 import com.yilmazgokhan.composeplayground.ui.component.TextDefault
@@ -36,7 +36,7 @@ fun BasicListView() {
 }
 
 @Composable
-fun RenderItem(itemBasic: BasicListItem) {
+fun RenderItem(user: User) {
     Card(
         modifier = Modifier
             .padding(10.dp)
@@ -45,7 +45,7 @@ fun RenderItem(itemBasic: BasicListItem) {
     ) {
         val status: String
         var statusTextColor: Color = Color.Black
-        if (itemBasic.online) {
+        if (user.online) {
             status = "Online"
             statusTextColor = Color.Green
         } else {
@@ -59,7 +59,7 @@ fun RenderItem(itemBasic: BasicListItem) {
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(itemBasic.imgUrl)
+                    .data(user.imgUrl)
                     .crossfade(true)
                     .build(),
                 contentDescription = "",
@@ -75,7 +75,7 @@ fun RenderItem(itemBasic: BasicListItem) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     TextDefault(
-                        text = itemBasic.name
+                        text = user.name
                     )
                     InfoBox(
                         text = status,
@@ -83,11 +83,11 @@ fun RenderItem(itemBasic: BasicListItem) {
                     )
                 }
                 TextTiny(
-                    text = "@${itemBasic.username}",
+                    text = "@${user.username}",
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 TextSecondary(
-                    text = itemBasic.summary,
+                    text = user.summary,
                     maxLines = 3
                 )
             }
