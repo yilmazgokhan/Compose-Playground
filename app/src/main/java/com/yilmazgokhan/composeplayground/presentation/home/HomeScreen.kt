@@ -7,8 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.yilmazgokhan.composeplayground.ui.component.ButtonDefault
 import com.yilmazgokhan.composeplayground.navigation.NavDirections
+import com.yilmazgokhan.composeplayground.ui.component.ButtonDefault
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -24,6 +24,10 @@ fun HomeScreen(navController: NavController) {
         ButtonDefault(
             text = "Details",
             click = { navController.navigate(NavDirections.DETAILS_SCREEN) }
+        )
+        ButtonDefault(
+            text = "Messages",
+            click = { navController.navigate(NavDirections.MESSAGES_SCREEN) }
         )
     }
 }

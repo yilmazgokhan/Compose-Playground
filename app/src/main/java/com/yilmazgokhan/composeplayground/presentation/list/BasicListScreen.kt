@@ -25,7 +25,6 @@ import com.yilmazgokhan.composeplayground.ui.component.TextTiny
 
 @Composable
 fun BasicListView() {
-
     Scaffold() {
         LazyColumn(modifier = Modifier.padding(horizontal = 4.dp)) {
             items(items = Users) {

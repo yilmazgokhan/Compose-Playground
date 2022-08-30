@@ -8,6 +8,7 @@ import com.yilmazgokhan.composeplayground.presentation.home.HomeScreen
 import com.yilmazgokhan.composeplayground.presentation.list.BasicListView
 import com.yilmazgokhan.composeplayground.presentation.login.LoginScreen
 import com.yilmazgokhan.composeplayground.presentation.main.DetailScreen
+import com.yilmazgokhan.composeplayground.presentation.message.MessageScreen
 import com.yilmazgokhan.composeplayground.presentation.register.RegisterScreen
 
 @Composable
@@ -30,6 +31,9 @@ fun NavigationComponent(navController: NavHostController) {
         }
         composable(NavDirections.DETAILS_SCREEN) {
             DetailScreen()
+        }
+        composable(NavDirections.MESSAGES_SCREEN) {
+            MessageScreen()
         }
     }
 }

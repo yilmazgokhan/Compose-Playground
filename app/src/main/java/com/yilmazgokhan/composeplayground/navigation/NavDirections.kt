@@ -6,4 +6,5 @@ object NavDirections {
     const val HOME_SCREEN = "home"
     const val BASIC_LIST_SCREEN = "basic_list"
     const val DETAILS_SCREEN = "details"
+    const val MESSAGES_SCREEN = "messages"
 }
