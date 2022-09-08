@@ -15,7 +15,8 @@ import com.yilmazgokhan.composeplayground.presentation.register.RegisterScreen
 fun NavigationComponent(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = NavDirections.LOGIN_SCREEN
+        //startDestination = NavDirections.LOGIN_SCREEN
+        startDestination = NavDirections.MESSAGES_SCREEN
     ) {
         composable(NavDirections.LOGIN_SCREEN) {
             LoginScreen(navController)

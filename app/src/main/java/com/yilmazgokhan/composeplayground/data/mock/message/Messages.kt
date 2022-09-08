@@ -23,7 +23,7 @@ val Messages = listOf(
     ),
     Message(
         id = 3,
-        sender = Users[0],
+        sender = Users[2],
         receiver = Users[1],
         content = Texts[3],
         date = 1656849785595,
@@ -31,7 +31,7 @@ val Messages = listOf(
     ),
     Message(
         id = 4,
-        sender = Users[0],
+        sender = Users[2],
         receiver = Users[1],
         content = Texts[2],
         date = 1657149785595,
@@ -47,7 +47,7 @@ val Messages = listOf(
     ),
     Message(
         id = 6,
-        sender = Users[0],
+        sender = Users[3],
         receiver = Users[1],
         content = Texts[5],
         date = 1667949785595,
@@ -63,7 +63,7 @@ val Messages = listOf(
     ),
     Message(
         id = 6,
-        sender = Users[0],
+        sender = Users[4],
         receiver = Users[1],
         content = Texts[5],
         date = 1667949785595,
