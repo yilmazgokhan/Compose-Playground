@@ -1,9 +1,10 @@
 package com.yilmazgokhan.composeplayground.navigation
 
-object NavDirections {
-    const val LOGIN_SCREEN = "login"
-    const val REGISTER_SCREEN = "register"
-    const val HOME_SCREEN = "home"
-    const val BASIC_LIST_SCREEN = "basic_list"
-    const val DETAILS_SCREEN = "details"
+
+sealed class NavScreen(val route: String) {
+    object LOGIN_SCREEN : NavScreen("login")
+    object REGISTER_SCREEN : NavScreen("register")
+    object HOME_SCREEN : NavScreen("home")
+    object BASIC_LIST_SCREEN : NavScreen("basic_list")
+    object DETAILS_SCREEN : NavScreen("details")
 }
