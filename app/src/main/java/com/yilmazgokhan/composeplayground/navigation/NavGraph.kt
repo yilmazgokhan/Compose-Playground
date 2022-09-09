@@ -2,44 +2,61 @@ package com.yilmazgokhan.composeplayground.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.yilmazgokhan.composeplayground.presentation.home.HomeScreen
 import com.yilmazgokhan.composeplayground.presentation.login.LoginScreen
-import com.yilmazgokhan.composeplayground.presentation.main.DetailScreen
 import com.yilmazgokhan.composeplayground.presentation.register.RegisterScreen
+import com.yilmazgokhan.composeplayground.ui.component.BottomBar
+import com.yilmazgokhan.composeplayground.ui.component.DefaultScaffold
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun NavGraph(startDestination: String = NavScreen.LOGIN_SCREEN.route) {
+fun NavGraph(startDestination: String = NavDirections.Login.route) {
     val navController = rememberAnimatedNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    Scaffold { innerPadding ->
+    DefaultScaffold(
+        bottomBar = {
+            BottomNav.values().forEach { navItem ->
+                if (navItem.route == currentRoute) {
+                    BottomBar(
+                        navController = navController,
+                        currentRoute = currentRoute
+                    )
+                }
+            }
+        },
+    ) { innerPadding ->
         AnimatedNavHost(
             navController = navController,
             startDestination = startDestination,
             Modifier.padding(innerPadding)
         ) {
-            composable(NavScreen.LOGIN_SCREEN.route) {
+            composable(NavDirections.Login.route) {
                 LoginScreen(
                     hiltViewModel(),
                     navigateToRegister = {
-                        navController.navigate(NavScreen.REGISTER_SCREEN.route)
+                        navController.navigate(NavDirections.Register.route)
                     },
                     navigateToHome = {
-                        navController.navigate(NavScreen.HOME_SCREEN.route)
+                        navController.navigate(NavDirections.Home.route)
                     }
                 )
             }
-            composable(NavScreen.REGISTER_SCREEN.route) {
+            composable(NavDirections.Home.route) {
+                HomeScreen(
+                    hiltViewModel(),
+                )
+            }
+            composable(NavDirections.Register.route) {
                 RegisterScreen(
                     hiltViewModel(),
                     navigateToBack = {
@@ -61,13 +78,12 @@ fun NavGraph(startDestination: String = NavScreen.LOGIN_SCREEN.route) {
                     }
                 )
             }
-             */
-
-            composable(NavScreen.DETAILS_SCREEN.route) {
+            composable(NavDirections.DETAILS_Directions.route) {
                 DetailScreen(
                     //hiltViewModel()
                 )
             }
+             */
         }
     }
 }

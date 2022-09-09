@@ -20,6 +20,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import com.blankj.utilcode.util.LogUtils
 import com.yilmazgokhan.composeplayground.R
 import com.yilmazgokhan.composeplayground.presentation.register.BottomBar
 import com.yilmazgokhan.composeplayground.ui.component.ButtonWithBorder
@@ -33,6 +34,8 @@ fun LoginScreen(
     navigateToRegister: () -> Unit,
     navigateToHome: () -> Unit,
 ) {
+    LogUtils.d("LoginScreen")
+
     val viewState by viewModel.uiState.collectAsState()
     Scaffold(bottomBar = { BottomBar(navigateToRegister) },
         content = {

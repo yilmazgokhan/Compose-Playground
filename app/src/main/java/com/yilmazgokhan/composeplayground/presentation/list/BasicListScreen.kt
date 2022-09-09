@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.yilmazgokhan.composeplayground.data.local.BasicListItem
 import com.yilmazgokhan.composeplayground.data.mock.basic_list.Users
@@ -57,6 +56,7 @@ fun RenderItem(itemBasic: BasicListItem) {
                 .padding(all = 6.dp)
                 .fillMaxWidth()
         ) {
+            /*
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(itemBasic.imgUrl)
@@ -68,6 +68,7 @@ fun RenderItem(itemBasic: BasicListItem) {
                     .size(64.dp)
                     .clip(CircleShape)
             )
+             */
             Column(modifier = Modifier.padding(4.dp)) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
