@@ -11,6 +11,8 @@
 ## Features
 
 - Navigation with Compose
+- Integration of Hilt
+- MVVM Design Pattern
 - Using the Component structure
 - Displaying a simple list with mock data
 - Simple login screen
@@ -19,6 +21,7 @@
 ## Project Structure
 
 - data: It contains all the data accessing and manipulating components.
+- di: The directory will contain the classes responsible for dependency injection.
 - navigation: Navigation component classes
 - presentation: View classes.
 - ui: Component classes.
@@ -35,6 +38,8 @@
 
 - [Kotlin](https://kotlinlang.org/)
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
+- [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+- [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 - [Navigation Compose](https://developer.android.com/jetpack/compose/navigation)
 - [Coil](https://coil-kt.github.io/coil/compose/)
 
