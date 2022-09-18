@@ -1,5 +1,6 @@
 package com.yilmazgokhan.composeplayground.presentation.login
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -19,16 +20,24 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import com.blankj.utilcode.util.LogUtils
 import com.yilmazgokhan.composeplayground.R
-import com.yilmazgokhan.composeplayground.navigation.NavDirections
+import com.yilmazgokhan.composeplayground.presentation.register.BottomBar
 import com.yilmazgokhan.composeplayground.ui.component.ButtonWithBorder
 import com.yilmazgokhan.composeplayground.ui.component.TextSecondary
 import com.yilmazgokhan.composeplayground.ui.theme.Purple200
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun LoginScreen(navController: NavController) {
-    Scaffold(bottomBar = { BottomBar(navController) },
+fun LoginScreen(
+    viewModel: LoginViewModel,
+    navigateToRegister: () -> Unit,
+    navigateToHome: () -> Unit,
+) {
+    LogUtils.d("LoginScreen")
+
+    val viewState by viewModel.uiState.collectAsState()
+    Scaffold(bottomBar = { BottomBar(navigateToRegister) },
         content = {
             Column(
                 modifier = Modifier
@@ -129,27 +138,22 @@ fun LoginScreen(navController: NavController) {
 
                 ButtonWithBorder(
                     text = "Login",
-                    click = {
-                        // TODO:
-                        //if (pass.text == "" && email.text == "")
-                        navController.navigate(NavDirections.HOME_SCREEN)
-                    }
+                    click = { navigateToHome.invoke() }
                 )
-
             }
         }
     )
 }
 
 @Composable
-fun BottomBar(navController: NavController) {
+fun BottomBar(navigateToRegister: () -> Unit) {
     Column(modifier = Modifier.padding(4.dp)) {
         ButtonWithBorder(
             text = "Register",
             textColor = Color.White,
             borderColor = Purple200,
             backgroundColor = Purple200,
-            click = { navController.navigate(NavDirections.REGISTER_SCREEN) }
+            click = { navigateToRegister.invoke() }
         )
         Spacer(modifier = Modifier.height(12.dp))
 
