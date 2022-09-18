@@ -1,5 +1,6 @@
 package com.yilmazgokhan.composeplayground.presentation.register
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
@@ -19,15 +20,20 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.yilmazgokhan.composeplayground.R
 import com.yilmazgokhan.composeplayground.ui.component.ButtonWithBorder
 import com.yilmazgokhan.composeplayground.ui.component.TextSecondary
 import com.yilmazgokhan.composeplayground.ui.theme.Purple200
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun RegisterScreen(navController: NavController) {
-    Scaffold(bottomBar = { BottomBar(navController) }) {
+fun RegisterScreen(
+    viewModel: RegisterViewModel,
+    navigateToBack: () -> Unit,
+) {
+    val viewState by viewModel.uiState.collectAsState()
+
+    Scaffold(bottomBar = { BottomBar(navigateToBack) }) {
         Surface(
             modifier = Modifier
                 .fillMaxSize()
@@ -271,16 +277,14 @@ fun TermsAndConditionsSelection() {
 }
 
 @Composable
-fun BottomBar(navController: NavController) {
+fun BottomBar(navigateToBack: () -> Unit) {
     Box(modifier = Modifier.padding(4.dp)) {
         ButtonWithBorder(
             text = "Register",
             textColor = Color.White,
             borderColor = Purple200,
             backgroundColor = Purple200,
-            click = {
-                navController.popBackStack()
-            }
+            click = { navigateToBack.invoke() }
         )
     }
 }
