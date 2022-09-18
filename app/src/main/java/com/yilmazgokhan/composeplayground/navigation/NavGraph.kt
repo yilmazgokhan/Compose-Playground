@@ -1,6 +1,8 @@
 package com.yilmazgokhan.composeplayground.navigation
 
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -11,6 +13,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.yilmazgokhan.composeplayground.presentation.home.HomeScreen
+import com.yilmazgokhan.composeplayground.presentation.list.BasicListView
 import com.yilmazgokhan.composeplayground.presentation.login.LoginScreen
 import com.yilmazgokhan.composeplayground.presentation.register.RegisterScreen
 import com.yilmazgokhan.composeplayground.ui.component.BottomBar
@@ -54,6 +57,12 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
             composable(NavDirections.Home.route) {
                 HomeScreen(
                     hiltViewModel(),
+                    navigateToList = {
+                        navController.navigate(NavDirections.BasicList.route)
+                    },
+                    navigateToDetails = {
+
+                    }
                 )
             }
             composable(NavDirections.Register.route) {
@@ -69,21 +78,36 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
                      */
                 )
             }
-            /*
-            composable(NavScreen.BASIC_LIST_SCREEN.route) {
-                BasicListView(
-                    hiltViewModel(),
-                    navigateToDetail = {
-                        navController.navigate(NavScreen.CharacterDetail.route.plus("?characterDetail=${it.toJson()}"))
-                    }
-                )
-            }
-            composable(NavDirections.DETAILS_Directions.route) {
-                DetailScreen(
-                    //hiltViewModel()
-                )
-            }
-             */
+            composable(
+                NavDirections.BasicList.route, content = {
+                    BasicListView(
+                        hiltViewModel(),
+                        navigateToBack = {
+                            navController.popBackStack()
+                        },
+                        /*
+                navigateToDetail = {
+                    navController.navigate(NavScreen.CharacterDetail.route.plus("?characterDetail=${it.toJson()}"))
+                }
+                         */
+
+                        navigateToDetail = {
+                            navController.navigate(NavDirections.Details.route.plus("?detail=$it"))
+                        })
+                },
+                enterTransition = {
+                    slideIntoContainer(
+                        AnimatedContentScope.SlideDirection.Left,
+                        animationSpec = tween(700)
+                    )
+                },
+                popExitTransition = {
+                    slideOutOfContainer(
+                        AnimatedContentScope.SlideDirection.Right,
+                        animationSpec = tween(700)
+                    )
+                }
+            )
         }
     }
 }

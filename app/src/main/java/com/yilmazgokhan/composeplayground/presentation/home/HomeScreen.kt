@@ -9,13 +9,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.blankj.utilcode.util.LogUtils
 import com.yilmazgokhan.composeplayground.ui.component.ButtonDefault
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel,
+    navigateToList: () -> Unit,
+    navigateToDetails: () -> Unit,
 ) {
 
     val viewState by viewModel.uiState.collectAsState()
@@ -26,7 +27,7 @@ fun HomeScreen(
     ) {
         ButtonDefault(
             text = "List",
-            click = { }
+            click = { navigateToList() }
         )
         ButtonDefault(
             text = "Details",
