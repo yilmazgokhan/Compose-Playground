@@ -17,6 +17,7 @@ fun HomeScreen(
     viewModel: HomeViewModel,
     navigateToList: () -> Unit,
     navigateToDetails: () -> Unit,
+    navigateToMessages: () -> Unit,
 ) {
 
     val viewState by viewModel.uiState.collectAsState()
@@ -32,6 +33,10 @@ fun HomeScreen(
         ButtonDefault(
             text = "Details",
             click = { }
+        )
+        ButtonDefault(
+            text = "Messages",
+            click = { navigateToMessages() }
         )
     }
 }

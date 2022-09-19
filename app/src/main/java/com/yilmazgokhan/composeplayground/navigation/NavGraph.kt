@@ -13,8 +13,9 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.yilmazgokhan.composeplayground.presentation.home.HomeScreen
-import com.yilmazgokhan.composeplayground.presentation.list.BasicListView
+import com.yilmazgokhan.composeplayground.presentation.list.BasicListScreen
 import com.yilmazgokhan.composeplayground.presentation.login.LoginScreen
+import com.yilmazgokhan.composeplayground.presentation.message.MessageScreen
 import com.yilmazgokhan.composeplayground.presentation.register.RegisterScreen
 import com.yilmazgokhan.composeplayground.ui.component.BottomBar
 import com.yilmazgokhan.composeplayground.ui.component.DefaultScaffold
@@ -62,6 +63,9 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
                     },
                     navigateToDetails = {
 
+                    },
+                    navigateToMessages = {
+                        navController.navigate(NavDirections.Message.route)
                     }
                 )
             }
@@ -80,7 +84,7 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
             }
             composable(
                 NavDirections.BasicList.route, content = {
-                    BasicListView(
+                    BasicListScreen(
                         hiltViewModel(),
                         navigateToBack = {
                             navController.popBackStack()
@@ -93,6 +97,27 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
 
                         navigateToDetail = {
                             navController.navigate(NavDirections.Details.route.plus("?detail=$it"))
+                        })
+                },
+                enterTransition = {
+                    slideIntoContainer(
+                        AnimatedContentScope.SlideDirection.Left,
+                        animationSpec = tween(700)
+                    )
+                },
+                popExitTransition = {
+                    slideOutOfContainer(
+                        AnimatedContentScope.SlideDirection.Right,
+                        animationSpec = tween(700)
+                    )
+                }
+            )
+            composable(
+                NavDirections.Message.route, content = {
+                    MessageScreen(
+                        hiltViewModel(),
+                        navigateToBack = {
+                            navController.popBackStack()
                         })
                 },
                 enterTransition = {

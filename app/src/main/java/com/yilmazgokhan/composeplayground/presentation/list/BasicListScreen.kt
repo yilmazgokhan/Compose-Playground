@@ -17,10 +17,9 @@ import com.yilmazgokhan.composeplayground.data.local.list.User
 import com.yilmazgokhan.composeplayground.data.mock.basic_list.Users
 import com.yilmazgokhan.composeplayground.ui.component.*
 
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun BasicListView(
+fun BasicListScreen(
     viewModel: BasicListViewModel,
     navigateToBack: () -> Unit,
     navigateToDetail: (User) -> Unit
