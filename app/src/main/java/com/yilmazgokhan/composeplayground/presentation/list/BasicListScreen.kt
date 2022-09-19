@@ -26,7 +26,12 @@ fun BasicListScreen(
 ) {
     val viewState by viewModel.uiState.collectAsState()
 
-    Scaffold {
+    Scaffold(topBar = {
+        DefaultToolbar(
+            title = "User List",
+            onBackPressClick = navigateToBack
+        )
+    }) {
         LazyColumn(modifier = Modifier.padding(horizontal = 4.dp)) {
             items(items = Users) {
                 RenderItem(it)

@@ -56,7 +56,7 @@ dependencies {
     def hilt_version = "2.40.1"
     def navigation_version = "2.4.0-alpha07"
     def accompanist_version = "0.24.3-alpha"
-    def coil_version = "1.4.0"
+    def coil_version = "2.2.1"
     def paging_version = "1.0.0-alpha14"
 
     implementation 'androidx.core:core-ktx:1.7.0'

@@ -22,13 +22,14 @@ import com.yilmazgokhan.composeplayground.ui.component.DefaultScaffold
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun NavGraph(startDestination: String = NavDirections.Login.route) {
+fun NavGraph(startDestination: String = NavDirections.Home.route) {
     val navController = rememberAnimatedNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
     DefaultScaffold(
         bottomBar = {
+            /*
             BottomNav.values().forEach { navItem ->
                 if (navItem.route == currentRoute) {
                     BottomBar(
@@ -37,6 +38,7 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
                     )
                 }
             }
+             */
         },
     ) { innerPadding ->
         AnimatedNavHost(
@@ -58,6 +60,12 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
             composable(NavDirections.Home.route) {
                 HomeScreen(
                     hiltViewModel(),
+                    navigateToLogin = {
+                        navController.navigate(NavDirections.Login.route)
+                    },
+                    navigateToRegister = {
+                        navController.navigate(NavDirections.Register.route)
+                    },
                     navigateToList = {
                         navController.navigate(NavDirections.BasicList.route)
                     },
@@ -75,11 +83,6 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
                     navigateToBack = {
                         navController.popBackStack()
                     }
-                    /*
-                    navigateToHome = {
-                        navController.navigate(NavScreen.HOME_SCREEN.route)
-                    }
-                     */
                 )
             }
             composable(
@@ -89,12 +92,6 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
                         navigateToBack = {
                             navController.popBackStack()
                         },
-                        /*
-                navigateToDetail = {
-                    navController.navigate(NavScreen.CharacterDetail.route.plus("?characterDetail=${it.toJson()}"))
-                }
-                         */
-
                         navigateToDetail = {
                             navController.navigate(NavDirections.Details.route.plus("?detail=$it"))
                         })

@@ -15,7 +15,9 @@ import com.yilmazgokhan.composeplayground.ui.component.ButtonDefault
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel,
+    navigateToLogin: () -> Unit,
     navigateToList: () -> Unit,
+    navigateToRegister: () -> Unit,
     navigateToDetails: () -> Unit,
     navigateToMessages: () -> Unit,
 ) {
@@ -26,6 +28,14 @@ fun HomeScreen(
             .padding(4.dp)
             .fillMaxWidth()
     ) {
+        ButtonDefault(
+            text = "Login",
+            click = { navigateToLogin() }
+        )
+        ButtonDefault(
+            text = "Register",
+            click = { navigateToRegister() }
+        )
         ButtonDefault(
             text = "List",
             click = { navigateToList() }
