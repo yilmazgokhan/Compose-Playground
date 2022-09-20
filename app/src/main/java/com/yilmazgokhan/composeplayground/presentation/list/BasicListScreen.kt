@@ -28,7 +28,7 @@ fun BasicListScreen(
 
     Scaffold(topBar = {
         DefaultToolbar(
-            title = "User List",
+            title = "Users",
             onBackPressClick = navigateToBack
         )
     }) {

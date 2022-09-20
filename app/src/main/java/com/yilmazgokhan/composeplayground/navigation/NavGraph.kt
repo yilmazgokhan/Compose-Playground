@@ -54,6 +54,9 @@ fun NavGraph(startDestination: String = NavDirections.Home.route) {
                     },
                     navigateToHome = {
                         navController.navigate(NavDirections.Home.route)
+                    },
+                    navigateToBack = {
+                        navController.popBackStack()
                     }
                 )
             }

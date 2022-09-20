@@ -22,6 +22,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.yilmazgokhan.composeplayground.R
 import com.yilmazgokhan.composeplayground.ui.component.ButtonWithBorder
+import com.yilmazgokhan.composeplayground.ui.component.DefaultToolbar
 import com.yilmazgokhan.composeplayground.ui.component.TextSecondary
 import com.yilmazgokhan.composeplayground.ui.theme.Purple200
 
@@ -33,7 +34,12 @@ fun RegisterScreen(
 ) {
     val viewState by viewModel.uiState.collectAsState()
 
-    Scaffold(bottomBar = { BottomBar(navigateToBack) }) {
+    Scaffold(topBar = {
+        DefaultToolbar(
+            title = "Register",
+            onBackPressClick = navigateToBack
+        )
+    }, bottomBar = { BottomBar(navigateToBack) }) {
         Surface(
             modifier = Modifier
                 .fillMaxSize()

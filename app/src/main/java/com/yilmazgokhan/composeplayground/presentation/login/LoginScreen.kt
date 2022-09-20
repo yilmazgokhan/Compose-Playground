@@ -24,6 +24,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yilmazgokhan.composeplayground.R
 import com.yilmazgokhan.composeplayground.presentation.register.BottomBar
 import com.yilmazgokhan.composeplayground.ui.component.ButtonWithBorder
+import com.yilmazgokhan.composeplayground.ui.component.DefaultToolbar
 import com.yilmazgokhan.composeplayground.ui.component.TextSecondary
 import com.yilmazgokhan.composeplayground.ui.theme.Purple200
 
@@ -33,11 +34,18 @@ fun LoginScreen(
     viewModel: LoginViewModel,
     navigateToRegister: () -> Unit,
     navigateToHome: () -> Unit,
+    navigateToBack: () -> Unit,
 ) {
     LogUtils.d("LoginScreen")
 
     val viewState by viewModel.uiState.collectAsState()
-    Scaffold(bottomBar = { BottomBar(navigateToRegister) },
+    Scaffold(topBar = {
+        DefaultToolbar(
+            title = "Login",
+            onBackPressClick = navigateToBack
+        )
+    },
+        bottomBar = { BottomBar(navigateToRegister) },
         content = {
             Column(
                 modifier = Modifier
