@@ -50,7 +50,6 @@ class MessageViewModel @Inject constructor(
                             newMessage = event.text
                         )
                     }
-
                 }
             }
         }

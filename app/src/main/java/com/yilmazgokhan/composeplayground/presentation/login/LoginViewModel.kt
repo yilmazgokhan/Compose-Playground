@@ -25,6 +25,30 @@ class LoginViewModel @Inject constructor(
                 is LoginViewEvent.LoginEvent -> {
                     LogUtils.d("$this")
                 }
+                is LoginViewEvent.EmailChanged -> {
+                    LogUtils.d("$this")
+                    setState {
+                        currentState.copy(
+                            email = event.text
+                        )
+                    }
+                }
+                is LoginViewEvent.PasswordChanged -> {
+                    LogUtils.d("$this")
+                    setState {
+                        currentState.copy(
+                            password = event.text
+                        )
+                    }
+                }
+                is LoginViewEvent.RememberMeChanged -> {
+                    LogUtils.d("$this")
+                    setState {
+                        currentState.copy(
+                            rememberMe = event.value
+                        )
+                    }
+                }
             }
         }
     }
@@ -32,10 +56,15 @@ class LoginViewModel @Inject constructor(
 
 sealed class LoginViewEvent : IViewEvent {
     object LoginEvent : LoginViewEvent()
+    class EmailChanged(val text: String) : LoginViewEvent()
+    class PasswordChanged(val text: String) : LoginViewEvent()
+    class RememberMeChanged(val value: Boolean) : LoginViewEvent()
+
 }
 
 data class LoginViewState(
-    val userId: Int? = null,
-    val isDisplay: Boolean = false,
+    val email: String = "",
+    val password: String = "",
+    val rememberMe: Boolean = false,
     val isLoading: Boolean = false,
 ) : IViewState

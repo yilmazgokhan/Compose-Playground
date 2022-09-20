@@ -15,15 +15,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import com.blankj.utilcode.util.LogUtils
 import com.yilmazgokhan.composeplayground.R
-import com.yilmazgokhan.composeplayground.presentation.register.BottomBar
 import com.yilmazgokhan.composeplayground.ui.component.ButtonWithBorder
+import com.yilmazgokhan.composeplayground.ui.component.DefaultScaffold
 import com.yilmazgokhan.composeplayground.ui.component.DefaultToolbar
 import com.yilmazgokhan.composeplayground.ui.component.TextSecondary
 import com.yilmazgokhan.composeplayground.ui.theme.Purple200
@@ -36,16 +34,17 @@ fun LoginScreen(
     navigateToHome: () -> Unit,
     navigateToBack: () -> Unit,
 ) {
-    LogUtils.d("LoginScreen")
-
     val viewState by viewModel.uiState.collectAsState()
-    Scaffold(topBar = {
-        DefaultToolbar(
-            title = "Login",
-            onBackPressClick = navigateToBack
-        )
-    },
-        bottomBar = { BottomBar(navigateToRegister) },
+
+    DefaultScaffold(
+        topBar = {
+            DefaultToolbar(
+                title = "Login",
+                onBackPressClick = navigateToBack
+            )
+        },
+        bottomBar = { LoginBottomBar(navigateToRegister) },
+        loading = viewState.isLoading,
         content = {
             Column(
                 modifier = Modifier
@@ -54,10 +53,7 @@ fun LoginScreen(
                     .padding(4.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                var email by remember { mutableStateOf(TextFieldValue("")) }
-                var pass by remember { mutableStateOf(TextFieldValue("")) }
                 var passVisible by rememberSaveable { mutableStateOf(false) }
-
                 Image(
                     modifier = Modifier.padding(top = 16.dp),
                     painter = painterResource(id = R.drawable.compose),
@@ -67,7 +63,7 @@ fun LoginScreen(
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = email,
+                    value = viewState.email,
                     singleLine = true,
                     leadingIcon = {
                         Icon(
@@ -75,9 +71,7 @@ fun LoginScreen(
                             contentDescription = "emailIcon"
                         )
                     },
-                    onValueChange = {
-                        email = it
-                    },
+                    onValueChange = { viewModel.onTriggerEvent(LoginViewEvent.EmailChanged(it)) },
                     label = { Text(text = "Email address") },
                     placeholder = { Text(text = "Enter your e-mail") },
                 )
@@ -85,7 +79,7 @@ fun LoginScreen(
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = pass,
+                    value = viewState.password,
                     singleLine = true,
                     leadingIcon = {
                         Icon(
@@ -94,7 +88,7 @@ fun LoginScreen(
                         )
                     },
                     onValueChange = {
-                        pass = it
+                        viewModel.onTriggerEvent(LoginViewEvent.PasswordChanged(it))
                     },
                     label = { Text(text = "Password") },
                     placeholder = { Text(text = "Enter your password") },
@@ -125,7 +119,6 @@ fun LoginScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    val checkedState = remember { mutableStateOf(true) }
 
                     TextSecondary(
                         text = "Forget password!",
@@ -135,8 +128,14 @@ fun LoginScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Checkbox(
-                            checked = checkedState.value,
-                            onCheckedChange = { checkedState.value = it }
+                            checked = viewState.rememberMe,
+                            onCheckedChange = {
+                                viewModel.onTriggerEvent(
+                                    LoginViewEvent.RememberMeChanged(
+                                        it
+                                    )
+                                )
+                            }
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         TextSecondary(text = "Remember Me")
@@ -154,7 +153,7 @@ fun LoginScreen(
 }
 
 @Composable
-fun BottomBar(navigateToRegister: () -> Unit) {
+fun LoginBottomBar(navigateToRegister: () -> Unit) {
     Column(modifier = Modifier.padding(4.dp)) {
         ButtonWithBorder(
             text = "Register",
