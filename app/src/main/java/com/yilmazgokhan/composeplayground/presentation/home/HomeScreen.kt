@@ -15,8 +15,11 @@ import com.yilmazgokhan.composeplayground.ui.component.ButtonDefault
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel,
+    navigateToLogin: () -> Unit,
     navigateToList: () -> Unit,
+    navigateToRegister: () -> Unit,
     navigateToDetails: () -> Unit,
+    navigateToMessages: () -> Unit,
 ) {
 
     val viewState by viewModel.uiState.collectAsState()
@@ -26,12 +29,24 @@ fun HomeScreen(
             .fillMaxWidth()
     ) {
         ButtonDefault(
+            text = "Login",
+            click = { navigateToLogin() }
+        )
+        ButtonDefault(
+            text = "Register",
+            click = { navigateToRegister() }
+        )
+        ButtonDefault(
             text = "List",
             click = { navigateToList() }
         )
         ButtonDefault(
             text = "Details",
             click = { }
+        )
+        ButtonDefault(
+            text = "Messages",
+            click = { navigateToMessages() }
         )
     }
 }

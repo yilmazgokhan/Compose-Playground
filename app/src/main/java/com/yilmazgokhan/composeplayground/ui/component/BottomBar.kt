@@ -10,9 +10,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.yilmazgokhan.composeplayground.navigation.BottomNav
-import com.yilmazgokhan.composeplayground.navigation.NavDirections
 
 @Composable
 fun BottomBar(

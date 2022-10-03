@@ -1,9 +1,9 @@
-package com.yilmazgokhan.composeplayground.data.local
+package com.yilmazgokhan.composeplayground.data.local.list
 
 /**
  * Used in [BasicListScreen]
  */
-data class BasicListItem(
+data class User(
     val name: String,
     val username: String,
     val summary: String,

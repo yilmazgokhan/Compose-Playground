@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
-
 @Composable
 fun DefaultScaffold(
     modifier: Modifier = Modifier,
@@ -22,8 +21,11 @@ fun DefaultScaffold(
     floatingActionButton: @Composable (() -> Unit) = {},
     backgroundColor: Color = MaterialTheme.colors.background,
     contentColor: Color = contentColorFor(backgroundColor),
+    loading: Boolean = false,
     content: @Composable (PaddingValues) -> Unit
 ) {
+    Loading(visible = loading)
+
     Scaffold(
         modifier = modifier,
         scaffoldState = scaffoldState,

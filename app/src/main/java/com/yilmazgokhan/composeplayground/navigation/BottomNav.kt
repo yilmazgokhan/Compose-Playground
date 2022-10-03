@@ -7,10 +7,10 @@ enum class BottomNav(
     val iconId: Int,
     val screenName: String
 ) {
-    REGISTER(
-        NavDirections.Register.route,
+    HOME(
+        NavDirections.Home.route,
         R.drawable.ic_baseline_visibility_24,
-        "Register"
+        "Home"
     ),
     LOGIN(
         NavDirections.Login.route,

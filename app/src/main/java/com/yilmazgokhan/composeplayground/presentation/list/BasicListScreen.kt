@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -11,23 +12,32 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.yilmazgokhan.composeplayground.data.local.BasicListItem
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import com.yilmazgokhan.composeplayground.data.local.list.User
 import com.yilmazgokhan.composeplayground.data.mock.basic_list.Users
 import com.yilmazgokhan.composeplayground.ui.component.*
 
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun BasicListView(
+fun BasicListScreen(
     viewModel: BasicListViewModel,
     navigateToBack: () -> Unit,
-    navigateToDetail: (BasicListItem) -> Unit
+    navigateToDetail: (User) -> Unit
 ) {
     val viewState by viewModel.uiState.collectAsState()
 
-    Scaffold {
+    Scaffold(topBar = {
+        DefaultToolbar(
+            title = "Users",
+            onBackPressClick = navigateToBack
+        )
+    }) {
         LazyColumn(modifier = Modifier.padding(horizontal = 4.dp)) {
             items(items = Users) {
                 RenderItem(it)
@@ -37,7 +47,7 @@ fun BasicListView(
 }
 
 @Composable
-fun RenderItem(itemBasic: BasicListItem) {
+fun RenderItem(user: User) {
     Card(
         modifier = Modifier
             .padding(10.dp)
@@ -46,7 +56,7 @@ fun RenderItem(itemBasic: BasicListItem) {
     ) {
         val status: String
         var statusTextColor: Color = Color.Black
-        if (itemBasic.online) {
+        if (user.online) {
             status = "Online"
             statusTextColor = Color.Green
         } else {
@@ -58,10 +68,9 @@ fun RenderItem(itemBasic: BasicListItem) {
                 .padding(all = 6.dp)
                 .fillMaxWidth()
         ) {
-            /*
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(itemBasic.imgUrl)
+                    .data(user.imgUrl)
                     .crossfade(true)
                     .build(),
                 contentDescription = "",
@@ -70,7 +79,6 @@ fun RenderItem(itemBasic: BasicListItem) {
                     .size(64.dp)
                     .clip(CircleShape)
             )
-             */
             Column(modifier = Modifier.padding(4.dp)) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -78,7 +86,7 @@ fun RenderItem(itemBasic: BasicListItem) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     TextDefault(
-                        text = itemBasic.name
+                        text = user.name
                     )
                     InfoBox(
                         text = status,
@@ -86,11 +94,11 @@ fun RenderItem(itemBasic: BasicListItem) {
                     )
                 }
                 TextTiny(
-                    text = "@${itemBasic.username}",
+                    text = "@${user.username}",
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 TextSecondary(
-                    text = itemBasic.summary,
+                    text = user.summary,
                     maxLines = 3
                 )
             }

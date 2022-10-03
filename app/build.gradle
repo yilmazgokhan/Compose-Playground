@@ -56,8 +56,9 @@ dependencies {
     def hilt_version = "2.40.1"
     def navigation_version = "2.4.0-alpha07"
     def accompanist_version = "0.24.3-alpha"
-    def coil_version = "1.4.0"
+    def coil_version = "2.2.1"
     def paging_version = "1.0.0-alpha14"
+    def lottieVersion = "5.2.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
@@ -107,6 +108,13 @@ dependencies {
 
     //Android Util
     implementation "com.blankj:utilcodex:1.31.0"
+
+    //Time Ago
+    implementation 'com.github.marlonlom:timeago:4.0.3'
+
+    //Lottie
+    implementation "com.airbnb.android:lottie-compose:$lottieVersion"
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

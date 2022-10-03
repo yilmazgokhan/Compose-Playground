@@ -13,21 +13,23 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.yilmazgokhan.composeplayground.presentation.home.HomeScreen
-import com.yilmazgokhan.composeplayground.presentation.list.BasicListView
+import com.yilmazgokhan.composeplayground.presentation.list.BasicListScreen
 import com.yilmazgokhan.composeplayground.presentation.login.LoginScreen
+import com.yilmazgokhan.composeplayground.presentation.message.MessageScreen
 import com.yilmazgokhan.composeplayground.presentation.register.RegisterScreen
 import com.yilmazgokhan.composeplayground.ui.component.BottomBar
 import com.yilmazgokhan.composeplayground.ui.component.DefaultScaffold
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun NavGraph(startDestination: String = NavDirections.Login.route) {
+fun NavGraph(startDestination: String = NavDirections.Home.route) {
     val navController = rememberAnimatedNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
     DefaultScaffold(
         bottomBar = {
+            /*
             BottomNav.values().forEach { navItem ->
                 if (navItem.route == currentRoute) {
                     BottomBar(
@@ -36,6 +38,7 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
                     )
                 }
             }
+             */
         },
     ) { innerPadding ->
         AnimatedNavHost(
@@ -51,17 +54,29 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
                     },
                     navigateToHome = {
                         navController.navigate(NavDirections.Home.route)
+                    },
+                    navigateToBack = {
+                        navController.popBackStack()
                     }
                 )
             }
             composable(NavDirections.Home.route) {
                 HomeScreen(
                     hiltViewModel(),
+                    navigateToLogin = {
+                        navController.navigate(NavDirections.Login.route)
+                    },
+                    navigateToRegister = {
+                        navController.navigate(NavDirections.Register.route)
+                    },
                     navigateToList = {
                         navController.navigate(NavDirections.BasicList.route)
                     },
                     navigateToDetails = {
 
+                    },
+                    navigateToMessages = {
+                        navController.navigate(NavDirections.Message.route)
                     }
                 )
             }
@@ -71,28 +86,38 @@ fun NavGraph(startDestination: String = NavDirections.Login.route) {
                     navigateToBack = {
                         navController.popBackStack()
                     }
-                    /*
-                    navigateToHome = {
-                        navController.navigate(NavScreen.HOME_SCREEN.route)
-                    }
-                     */
                 )
             }
             composable(
                 NavDirections.BasicList.route, content = {
-                    BasicListView(
+                    BasicListScreen(
                         hiltViewModel(),
                         navigateToBack = {
                             navController.popBackStack()
                         },
-                        /*
-                navigateToDetail = {
-                    navController.navigate(NavScreen.CharacterDetail.route.plus("?characterDetail=${it.toJson()}"))
-                }
-                         */
-
                         navigateToDetail = {
                             navController.navigate(NavDirections.Details.route.plus("?detail=$it"))
+                        })
+                },
+                enterTransition = {
+                    slideIntoContainer(
+                        AnimatedContentScope.SlideDirection.Left,
+                        animationSpec = tween(700)
+                    )
+                },
+                popExitTransition = {
+                    slideOutOfContainer(
+                        AnimatedContentScope.SlideDirection.Right,
+                        animationSpec = tween(700)
+                    )
+                }
+            )
+            composable(
+                NavDirections.Message.route, content = {
+                    MessageScreen(
+                        hiltViewModel(),
+                        navigateToBack = {
+                            navController.popBackStack()
                         })
                 },
                 enterTransition = {

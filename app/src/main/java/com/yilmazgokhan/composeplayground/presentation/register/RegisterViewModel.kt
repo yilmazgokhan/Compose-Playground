@@ -25,17 +25,77 @@ class RegisterViewModel @Inject constructor(
                 is RegisterViewEvent.RegisterEvent -> {
                     LogUtils.d("$this")
                 }
+                is RegisterViewEvent.SetAddress -> {
+                    LogUtils.d("$this")
+                    setState {
+                        currentState.copy(
+                            address = event.text
+                        )
+                    }
+                }
+                is RegisterViewEvent.SetEmail ->  {
+                    LogUtils.d("$this")
+                    setState {
+                        currentState.copy(
+                            email = event.text
+                        )
+                    }
+                }
+                is RegisterViewEvent.SetName ->  {
+                    LogUtils.d("$this")
+                    setState {
+                        currentState.copy(
+                            name = event.text
+                        )
+                    }
+                }
+                is RegisterViewEvent.SetPhone ->  {
+                    LogUtils.d("$this")
+                    setState {
+                        currentState.copy(
+                            phone = event.text
+                        )
+                    }
+                }
+                is RegisterViewEvent.SetPassword ->  {
+                    LogUtils.d("$this")
+                    setState {
+                        currentState.copy(
+                            password = event.text
+                        )
+                    }
+                }
+                is RegisterViewEvent.SetPasswordConfirm ->  {
+                    LogUtils.d("$this")
+                    setState {
+                        currentState.copy(
+                            passwordConfirm = event.text
+                        )
+                    }
+                }
             }
         }
     }
 }
 
 sealed class RegisterViewEvent : IViewEvent {
+    class SetName(val text: String) : RegisterViewEvent()
+    class SetPhone(val text: String) : RegisterViewEvent()
+    class SetEmail(val text: String) : RegisterViewEvent()
+    class SetAddress(val text: String) : RegisterViewEvent()
+    class SetPassword(val text: String) : RegisterViewEvent()
+    class SetPasswordConfirm(val text: String) : RegisterViewEvent()
     object RegisterEvent : RegisterViewEvent()
 }
 
 data class RegisterViewState(
     val userId: Int? = null,
+    val name: String = "",
+    val phone: String = "",
+    val email: String = "",
+    val address: String = "",
+    val password: String = "",
+    val passwordConfirm: String = "",
     val isDisplay: Boolean = false,
     val isLoading: Boolean = false,
 ) : IViewState
