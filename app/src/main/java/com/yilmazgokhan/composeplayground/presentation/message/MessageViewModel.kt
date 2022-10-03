@@ -36,7 +36,7 @@ class MessageViewModel @Inject constructor(
                             newMessage = ""
                         )
                     }
-                    delay(2000)
+                    delay(1000)
                     setState {
                         currentState.copy(
                             hasNewMessage = false

@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.yilmazgokhan.composeplayground.R
@@ -32,18 +31,18 @@ fun RegisterScreen(
     viewModel: RegisterViewModel,
     navigateToBack: () -> Unit,
 ) {
-    val viewState by viewModel.uiState.collectAsState()
+    val state by viewModel.uiState.collectAsState()
 
     Scaffold(topBar = {
         DefaultToolbar(
             title = "Register",
             onBackPressClick = navigateToBack
         )
-    }, bottomBar = { BottomBar(navigateToBack) }) {
+    }, bottomBar = { BottomBar(navigateToBack) }) { padding ->
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it)
+                .padding(padding)
         ) {
             Column(
                 modifier = Modifier
@@ -51,14 +50,10 @@ fun RegisterScreen(
                     .fillMaxWidth()
                     .verticalScroll(rememberScrollState())
             ) {
-                var name by remember { mutableStateOf(TextFieldValue("")) }
-                var phone by remember { mutableStateOf(TextFieldValue("")) }
-                var email by remember { mutableStateOf(TextFieldValue("")) }
-                var address by remember { mutableStateOf(TextFieldValue("")) }
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = name,
+                    value = state.name,
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                     leadingIcon = {
@@ -68,7 +63,7 @@ fun RegisterScreen(
                         )
                     },
                     onValueChange = {
-                        name = it
+                        viewModel.onTriggerEvent(RegisterViewEvent.SetName(it))
                     },
                     label = { Text(text = "Name") },
                     placeholder = { Text(text = "Name") },
@@ -77,7 +72,7 @@ fun RegisterScreen(
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = phone,
+                    value = state.phone,
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                     leadingIcon = {
@@ -87,7 +82,7 @@ fun RegisterScreen(
                         )
                     },
                     onValueChange = {
-                        phone = it
+                        viewModel.onTriggerEvent(RegisterViewEvent.SetPhone(it))
                     },
                     label = { Text(text = "Phone number") },
                     placeholder = { Text(text = "Phone number") },
@@ -96,7 +91,7 @@ fun RegisterScreen(
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = email,
+                    value = state.email,
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                     leadingIcon = {
@@ -106,7 +101,7 @@ fun RegisterScreen(
                         )
                     },
                     onValueChange = {
-                        email = it
+                        viewModel.onTriggerEvent(RegisterViewEvent.SetEmail(it))
                     },
                     label = { Text(text = "Email address") },
                     placeholder = { Text(text = "Email address") },
@@ -115,7 +110,7 @@ fun RegisterScreen(
 
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = address,
+                    value = state.address,
                     singleLine = false,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                     leadingIcon = {
@@ -125,14 +120,14 @@ fun RegisterScreen(
                         )
                     },
                     onValueChange = {
-                        address = it
+                        viewModel.onTriggerEvent(RegisterViewEvent.SetAddress(it))
                     },
                     label = { Text(text = "Address") },
                     placeholder = { Text(text = "Address") },
                 )
                 Spacer(modifier = Modifier.height(4.dp))
 
-                PasswordSelection()
+                PasswordSelection(viewModel, state)
                 Spacer(modifier = Modifier.height(12.dp))
 
                 GenderSelection()
@@ -145,15 +140,13 @@ fun RegisterScreen(
 }
 
 @Composable
-fun PasswordSelection() {
-    var pass by remember { mutableStateOf(TextFieldValue("")) }
+fun PasswordSelection(viewModel: RegisterViewModel, state: RegisterViewState) {
     var passVisible by rememberSaveable { mutableStateOf(false) }
-    var confirmPass by remember { mutableStateOf(TextFieldValue("")) }
     var confirmPassVisible by rememberSaveable { mutableStateOf(false) }
 
     OutlinedTextField(
         modifier = Modifier.fillMaxWidth(),
-        value = pass,
+        value = state.password,
         singleLine = true,
         leadingIcon = {
             Icon(
@@ -162,7 +155,7 @@ fun PasswordSelection() {
             )
         },
         onValueChange = {
-            pass = it
+            viewModel.onTriggerEvent(RegisterViewEvent.SetPassword(it))
         },
         label = { Text(text = "Password") },
         placeholder = { Text(text = "Password") },
@@ -188,7 +181,7 @@ fun PasswordSelection() {
 
     OutlinedTextField(
         modifier = Modifier.fillMaxWidth(),
-        value = confirmPass,
+        value = state.passwordConfirm,
         singleLine = true,
         leadingIcon = {
             Icon(
@@ -197,7 +190,7 @@ fun PasswordSelection() {
             )
         },
         onValueChange = {
-            confirmPass = it
+            viewModel.onTriggerEvent(RegisterViewEvent.SetPasswordConfirm(it))
         },
         label = { Text(text = "Confirm password") },
         placeholder = { Text(text = "Confirm password") },
