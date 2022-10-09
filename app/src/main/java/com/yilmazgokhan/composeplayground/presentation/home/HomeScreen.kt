@@ -16,7 +16,7 @@ import com.yilmazgokhan.composeplayground.ui.component.ButtonDefault
 fun HomeScreen(
     viewModel: HomeViewModel,
     navigateToLogin: () -> Unit,
-    navigateToList: () -> Unit,
+    navigateToUsers: () -> Unit,
     navigateToRegister: () -> Unit,
     navigateToDetails: () -> Unit,
     navigateToMessages: () -> Unit,
@@ -37,8 +37,8 @@ fun HomeScreen(
             click = { navigateToRegister() }
         )
         ButtonDefault(
-            text = "List",
-            click = { navigateToList() }
+            text = "Users",
+            click = { navigateToUsers() }
         )
         ButtonDefault(
             text = "Details",

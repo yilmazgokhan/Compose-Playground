@@ -6,7 +6,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
-import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -20,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.yilmazgokhan.composeplayground.data.local.list.User
-import com.yilmazgokhan.composeplayground.data.mock.basic_list.Users
 import com.yilmazgokhan.composeplayground.ui.component.*
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -32,14 +30,14 @@ fun BasicListScreen(
 ) {
     val viewState by viewModel.uiState.collectAsState()
 
-    Scaffold(topBar = {
+    DefaultScaffold(topBar = {
         DefaultToolbar(
             title = "Users",
             onBackPressClick = navigateToBack
         )
-    }) {
+    }, loading = viewState.isLoading) {
         LazyColumn(modifier = Modifier.padding(horizontal = 4.dp)) {
-            items(items = Users) {
+            items(items = viewState.users) {
                 RenderItem(it)
             }
         }

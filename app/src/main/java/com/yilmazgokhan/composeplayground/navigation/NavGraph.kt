@@ -17,7 +17,6 @@ import com.yilmazgokhan.composeplayground.presentation.list.BasicListScreen
 import com.yilmazgokhan.composeplayground.presentation.login.LoginScreen
 import com.yilmazgokhan.composeplayground.presentation.message.MessageScreen
 import com.yilmazgokhan.composeplayground.presentation.register.RegisterScreen
-import com.yilmazgokhan.composeplayground.ui.component.BottomBar
 import com.yilmazgokhan.composeplayground.ui.component.DefaultScaffold
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -69,8 +68,8 @@ fun NavGraph(startDestination: String = NavDirections.Home.route) {
                     navigateToRegister = {
                         navController.navigate(NavDirections.Register.route)
                     },
-                    navigateToList = {
-                        navController.navigate(NavDirections.BasicList.route)
+                    navigateToUsers = {
+                        navController.navigate(NavDirections.Users.route)
                     },
                     navigateToDetails = {
 
@@ -89,7 +88,7 @@ fun NavGraph(startDestination: String = NavDirections.Home.route) {
                 )
             }
             composable(
-                NavDirections.BasicList.route, content = {
+                NavDirections.Users.route, content = {
                     BasicListScreen(
                         hiltViewModel(),
                         navigateToBack = {

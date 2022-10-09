@@ -5,7 +5,10 @@ import com.blankj.utilcode.util.LogUtils
 import com.yilmazgokhan.composeplayground.base.BaseViewModel
 import com.yilmazgokhan.composeplayground.base.IViewEvent
 import com.yilmazgokhan.composeplayground.base.IViewState
+import com.yilmazgokhan.composeplayground.data.local.list.User
+import com.yilmazgokhan.composeplayground.data.mock.basic_list.Users
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,6 +18,7 @@ class BasicListViewModel @Inject constructor(
 
     init {
         LogUtils.d("$this")
+        prepareMockUsers()
     }
 
     override fun createInitialState(): ListViewState = ListViewState()
@@ -28,6 +32,19 @@ class BasicListViewModel @Inject constructor(
             }
         }
     }
+
+    private fun prepareMockUsers() {
+        viewModelScope.launch {
+            setState { currentState.copy(isLoading = true) }
+            delay(3000)
+            setState {
+                currentState.copy(
+                    users = Users,
+                    isLoading = false
+                )
+            }
+        }
+    }
 }
 
 sealed class ListViewEvent : IViewEvent {
@@ -36,4 +53,5 @@ sealed class ListViewEvent : IViewEvent {
 
 data class ListViewState(
     val isLoading: Boolean = false,
+    var users: List<User> = ArrayList(),
 ) : IViewState
